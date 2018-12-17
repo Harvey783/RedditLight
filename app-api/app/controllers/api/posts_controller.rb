@@ -16,5 +16,14 @@ class Api::PostsController < ApplicationController
     def show
         render json: @post
     end
+
+    def update
+        if @post.update(post_params)
+            render json: @post
+        else
+            render json: { messsage: @post.errors }, status: 400
+        end
+    end
     
+
 end
