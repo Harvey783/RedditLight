@@ -12,4 +12,9 @@ class Api::PostsController < ApplicationController
             render json: { message: post.errors }, status: 400
         end
     end
+
+    def show
+        render json: @post
+    end
+    
 end
