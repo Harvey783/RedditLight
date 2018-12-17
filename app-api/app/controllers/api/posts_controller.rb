@@ -1,4 +1,5 @@
 class Api::PostsController < ApplicationController
+    before_action :set_post, only: [:show, :edit, :destroy]
 
     def index
         render json: Post.all
@@ -24,6 +25,16 @@ class Api::PostsController < ApplicationController
             render json: { messsage: @post.errors }, status: 400
         end
     end
+
+    def destroy
+        if @post.destroy
+            render status: 204
+        else
+            render json: { messsage: "Unable to destroy" }, status: 400
+        end
+    end
     
+
+
 
 end
