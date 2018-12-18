@@ -1,4 +1,4 @@
-import posts from '../apis/posts';
+import posts from '../api/posts';
 import { CREATE_POST, SIGN_IN, SIGN_OUT } from './types';
 
 export const signIn = userId => {
@@ -18,5 +18,4 @@ export const createPost = formValues => async (dispatch, getState) => {
   const { userId } = getState().auth;
   const response = await posts.post('/posts', { ...formValues, userId });
   dispatch({ type: CREATE_POST, payload: response.data });
-  history.push('/');
 };

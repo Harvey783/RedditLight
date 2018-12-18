@@ -1,5 +1,6 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
+import { connect } from 'react-redux';
 import { createPost } from '../../actions';
 
 class PostCreate extends React.Component {
@@ -24,7 +25,7 @@ class PostCreate extends React.Component {
   };
 
   onSubmit = formValues => {
-    this.props.onSubmit(formValues);
+    this.props.createPost(formValues);
   };
 
   render() {
@@ -59,7 +60,12 @@ const validate = formValues => {
   return errors;
 };
 
-export default reduxForm({
+const formWrapped = reduxForm({
   form: 'postCreate',
   validate
 })(PostCreate);
+
+export default connect(
+  null,
+  { createPost }
+)(formWrapped);
