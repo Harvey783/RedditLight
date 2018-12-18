@@ -18,12 +18,10 @@ class Api::PostsController < ApplicationController
         render json: @post
     end
 
-    def edit
-        if @post.update(post_params)
-            render json: @post
-        else
-            render json: { messsage: @post.errors }, status: 400
-        end
+    def update
+        @post = Post.find(params[:id])
+        @post.update(post_params)
+        render json: @post, status: 200
     end
 
     def destroy
@@ -32,6 +30,10 @@ class Api::PostsController < ApplicationController
         else
             render json: { messsage: "Unable to destroy" }, status: 400
         end
+
+        # @post = Post.find(params[:id])
+        # @post.delete
+        # render json: @posts
     end
 
     private

@@ -12,7 +12,7 @@ class PostList extends React.Component {
     if (post.userId === this.props.currentUserId) {
       return (
         <div className="right floated content">
-          <Link to={`/posts/edit/${post.id}`}>
+          <Link to={`/posts/${post.id}/edit`}>
             <i class="grey edit outline icon" />
           </Link>
           <Link to={`/posts/delete/${post.id}`}>
