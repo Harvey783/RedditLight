@@ -1,5 +1,13 @@
 import posts from '../api/posts';
-import { CREATE_POST, SIGN_IN, SIGN_OUT } from './types';
+import {
+  SIGN_IN,
+  SIGN_OUT,
+  FETCH_POSTS,
+  FETCH_POST,
+  CREATE_POST,
+  DELETE_POST,
+  EDIT_POST
+} from './types';
 
 export const signIn = userId => {
   return {
