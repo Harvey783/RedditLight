@@ -37,3 +37,8 @@ export const createPost = formValues => async (dispatch, getState) => {
   const response = await posts.post('/posts', { ...formValues, userId });
   dispatch({ type: CREATE_POST, payload: response.data });
 };
+
+export const editPost = (id, formValues) => async dispatch => {
+  const response = await posts.patch(`/posts/${id}`, formValues);
+  dispatch({ type: EDIT_POST, payload: response.data });
+};
