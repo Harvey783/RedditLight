@@ -27,6 +27,11 @@ export const fetchPosts = () => async dispatch => {
   dispatch({ type: FETCH_POSTS, payload: response.data });
 };
 
+export const fetchPost = id => async dispatch => {
+  const response = await posts.get(`/posts/${id}`);
+  dispatch({ type: FETCH_POST, payload: response.data });
+};
+
 export const createPost = formValues => async (dispatch, getState) => {
   const { userId } = getState().auth;
   const response = await posts.post('/posts', { ...formValues, userId });
