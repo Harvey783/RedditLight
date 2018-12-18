@@ -1,5 +1,6 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
+import { createPost } from '../../actions';
 
 class PostCreate extends React.Component {
   renderError({ error, touched }) {
