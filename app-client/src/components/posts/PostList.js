@@ -39,11 +39,23 @@ class PostList extends React.Component {
   }
 
   render() {
-    return <div>PostList</div>;
+    return (
+      <div>
+        <br />
+        <div className="ui celled list">{this.renderPostList()}</div>
+      </div>
+    );
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    posts: Object.values(state.posts),
+    currentUserId: state.auth.userId
+  };
+};
+
 export default connect(
-  null,
+  mapStateToProps,
   { fetchPosts }
 )(PostList);
