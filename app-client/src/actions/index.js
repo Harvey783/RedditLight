@@ -42,3 +42,8 @@ export const editPost = (id, formValues) => async dispatch => {
   const response = await posts.patch(`/posts/${id}`, formValues);
   dispatch({ type: EDIT_POST, payload: response.data });
 };
+
+export const deletePost = id => async dispatch => {
+  await posts.delete(`/posts/${id}`);
+  dispatch({ type: DELETE_POST, payload: id });
+};
