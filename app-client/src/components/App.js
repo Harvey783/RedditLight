@@ -1,23 +1,26 @@
 import React from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { Router, Route, Switch } from 'react-router-dom';
 import PostCreate from './posts/PostCreate';
 import PostEdit from './posts/PostEdit';
 import PostDelete from './posts/PostDelete';
 import PostList from './posts/PostList';
 import Header from './Header';
+import history from './History';
 
 const App = () => {
   return (
     <div>
-      <BrowserRouter>
+      <Router history={history}>
         <div>
           <Header />
-          <Route path="/" exact component={PostList} />
-          <Route path="/posts/new" exact component={PostCreate} />
-          <Route path="/posts/edit" exact component={PostEdit} />
-          <Route path="/posts/delete" exact component={PostDelete} />
+          <Switch>
+            <Route path="/" exact component={PostList} />
+            <Route path="/posts/new" exact component={PostCreate} />
+            <Route path="/posts/edit" exact component={PostEdit} />
+            <Route path="/posts/delete" exact component={PostDelete} />
+          </Switch>
         </div>
-      </BrowserRouter>
+      </Router>
     </div>
   );
 };
