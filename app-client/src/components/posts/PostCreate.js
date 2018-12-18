@@ -22,9 +22,9 @@ class PostCreate extends React.Component {
     );
   };
 
-  onSubmit(formValues) {
-    console.log(formValues);
-  }
+  onSubmit = formValues => {
+    this.props.onSubmit(formValues);
+  };
 
   render() {
     return (
