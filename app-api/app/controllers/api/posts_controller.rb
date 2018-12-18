@@ -30,14 +30,9 @@ class Api::PostsController < ApplicationController
         else
             render json: { messsage: "Unable to destroy" }, status: 400
         end
-
-        # @post = Post.find(params[:id])
-        # @post.delete
-        # render json: @posts
     end
 
     private
-
     def set_post
         @post = Post.find_by(id: params[:id])
     end
