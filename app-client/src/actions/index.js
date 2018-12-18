@@ -22,6 +22,11 @@ export const signOut = () => {
   };
 };
 
+export const fetchPosts = () => async dispatch => {
+  const response = await posts.get('/posts');
+  dispatch({ type: FETCH_POSTS, payload: response.data });
+};
+
 export const createPost = formValues => async (dispatch, getState) => {
   const { userId } = getState().auth;
   const response = await posts.post('/posts', { ...formValues, userId });
