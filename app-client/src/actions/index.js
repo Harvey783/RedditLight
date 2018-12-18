@@ -1,4 +1,4 @@
-import posts from '../api/posts';
+import posts from '../components/api/posts';
 import {
   SIGN_IN,
   SIGN_OUT,
