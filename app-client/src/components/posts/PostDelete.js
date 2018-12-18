@@ -1,10 +1,48 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchPost, deletePost } from '../../actions';
+import { Link } from 'react-router-dom';
+import Modal from '../Modal';
+import history from '../History';
 
 class PostDelete extends React.Component {
+  componentDidMount() {
+    this.props.fetchPost(this.props.match.params.id);
+  }
+
+  renderActions() {
+    const { id } = this.props.match.params;
+
+    return (
+      <React.Fragment>
+        <button
+          onClick={() => this.props.deletePost(id)}
+          className="ui button negative"
+        >
+          Delete
+        </button>
+        <Link to="/" className="ui button">
+          Cancel
+        </Link>
+      </React.Fragment>
+    );
+  }
+
+  renderContent() {
+    if (!this.props.post) {
+      return 'Are you sure you want to delete this post?';
+    }
+    return `Delete ${this.props.post.title}???`;
+  }
+
   render() {
-    return <div>PostDelete</div>;
+    return (
+      <Modal
+        content={this.renderContent()}
+        actions={this.renderActions()}
+        onDismiss={() => history.push('/')}
+      />
+    );
   }
 }
 

@@ -13,10 +13,10 @@ class PostList extends React.Component {
       return (
         <div className="right floated content">
           <Link to={`/posts/${post.id}/edit`}>
-            <i class="grey edit outline icon" />
+            <i className="grey edit outline icon" />
           </Link>
-          <Link to={`/posts/delete/${post.id}`}>
-            <i class="red x icon" />
+          <Link to={`/posts/${post.id}/delete`}>
+            <i className="red x icon" />
           </Link>
         </div>
       );
