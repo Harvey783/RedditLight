@@ -38,11 +38,24 @@ class PostList extends React.Component {
     });
   }
 
+  renderPostCreate() {
+    if (this.props.isSignedIn) {
+      return (
+        <div style={{ textAlign: 'right' }}>
+          <Link to="/posts/new" className="ui mini primary button">
+            Create Post
+          </Link>
+        </div>
+      );
+    }
+  }
+
   render() {
     return (
       <div>
         <br />
         <div className="ui celled list">{this.renderPostList()}</div>
+        {this.renderPostCreate()}
       </div>
     );
   }
