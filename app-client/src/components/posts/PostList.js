@@ -23,6 +23,21 @@ class PostList extends React.Component {
     }
   }
 
+  renderPostList() {
+    return this.props.posts.map(post => {
+      return (
+        <div className="item" key={post.id}>
+          {this.renderIconLinks(post)}
+          <i className="large middle aligned thumbtack icon" />
+          <div className="content">
+            <div className="header">{post.title}</div>
+            <div className="description">{post.description}</div>
+          </div>
+        </div>
+      );
+    });
+  }
+
   render() {
     return <div>PostList</div>;
   }
