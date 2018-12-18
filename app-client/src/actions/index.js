@@ -1,3 +1,4 @@
+import posts from '../apis/posts';
 import { SIGN_IN, SIGN_OUT } from './types';
 
 export const signIn = userId => {
