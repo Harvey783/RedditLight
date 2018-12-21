@@ -12,7 +12,9 @@ class GoogleAuth extends React.Component {
           scope: 'email'
         })
         .then(() => {
+          // .then automatically invokes arrow function after library successfully initialized
           this.auth = window.gapi.auth2.getAuthInstance();
+          // get a reference to the auth object and save it on the component class
           this.onAuthChange(this.auth.isSignedIn.get());
           this.auth.isSignedIn.listen(this.onAuthChange);
         });
