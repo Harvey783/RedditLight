@@ -1,8 +1,8 @@
 import _ from 'lodash';
 import React from 'react';
+import PostForm from '../PostForm';
 import { connect } from 'react-redux';
 import { fetchPost, editPost } from '../../actions';
-import PostForm from '../PostForm';
 
 class PostEdit extends React.Component {
   componentDidMount() {

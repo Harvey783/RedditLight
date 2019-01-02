@@ -1,9 +1,9 @@
 import React from 'react';
+import Modal from '../Modal';
+import history from '../History';
 import { connect } from 'react-redux';
 import { fetchPost, deletePost } from '../../actions';
 import { Link } from 'react-router-dom';
-import Modal from '../Modal';
-import history from '../History';
 
 class PostDelete extends React.Component {
   componentDidMount() {

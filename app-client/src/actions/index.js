@@ -1,4 +1,3 @@
-import posts from '../components/api/posts';
 import {
   SIGN_IN,
   SIGN_OUT,
@@ -8,6 +7,7 @@ import {
   DELETE_POST,
   EDIT_POST
 } from './types';
+import posts from '../components/api/posts';
 import history from '../components/History';
 
 export const signIn = userId => {
