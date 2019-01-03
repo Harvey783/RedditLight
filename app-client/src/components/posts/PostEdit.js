@@ -1,8 +1,8 @@
-import _ from 'lodash';
-import React from 'react';
-import PostForm from '../PostForm';
-import { connect } from 'react-redux';
-import { fetchPost, editPost } from '../../actions';
+import _ from "lodash";
+import React from "react";
+import PostForm from "../PostForm";
+import { connect } from "react-redux";
+import { fetchPost, editPost } from "../../actions";
 
 class PostEdit extends React.Component {
   componentDidMount() {
@@ -14,14 +14,10 @@ class PostEdit extends React.Component {
   };
 
   render() {
-    if (!this.props.post) {
-      return <div>Loading...</div>;
-    }
-
     return (
       <div>
         <PostForm
-          initialValues={_.pick(this.props.post, 'title', 'description')}
+          initialValues={_.pick(this.props.post, "title", "description")}
           onSubmit={this.onSubmit}
         />
       </div>
