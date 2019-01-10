@@ -26,7 +26,8 @@ class PostList extends React.Component {
   renderPostList() {
     return this.props.posts.map(post => {
       return (
-        // calls renderIconLinks and passes the post currently being iterated over
+        // calls renderIconLinks and passes the post
+        //currently being iterated over
         <div className="item" key={post.id}>
           {this.renderIconLinks(post)}
           <i className="large middle aligned thumbtack icon" />
@@ -66,8 +67,7 @@ class PostList extends React.Component {
 const mapStateToProps = state => {
   return {
     posts: Object.values(state.posts),
-    // Return a object with a post property containg all of the posts
-    // Call Object.values to get a list of the posts inside an array and then pass in state.posts.... Object.values is a built in js function that takes an object as an argument.All the different values inside of that object are pulled out and then inserted into an array.
+    // Return a object with a post property containg all of the posts. Call Object.values to get a list of the posts inside an array and then pass in state.posts.... Object.values is a built in js function that takes an object as an argument.All the different values inside of that object are pulled out and then inserted into an array.
     currentUserId: state.auth.userId,
     // userId stored in redux store so add to mapStateToProps to get into component
     isSignedIn: state.auth.isSignedIn

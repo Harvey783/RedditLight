@@ -39,7 +39,6 @@ class GoogleAuth extends React.Component {
 
   onSignOutClick = () => {
     this.auth.signOut();
-    // Callback helper function accessing the AuthInstance assigned to this.auth.
   };
 
   renderAuthButton() {

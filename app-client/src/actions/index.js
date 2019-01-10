@@ -14,7 +14,9 @@ export const signIn = userId => {
   return {
     type: SIGN_IN,
     payload: userId
-    // Assigning userId as a payload property allows the action creator to receive ID as an arguement and pass it through to the reducer.
+    // Assigning userId as a payload property allows
+    // the action creator to receive ID as an arguement
+    // and pass it through to the reducer.
   };
 };
 
@@ -27,7 +29,8 @@ export const signOut = () => {
 export const fetchPosts = () => async dispatch => {
   const response = await posts.get("/posts");
   dispatch({ type: FETCH_POSTS, payload: response.data });
-  // Returning response.data inside the payload property b/c only concerned with info returned inside the request.
+  // Returning response.data inside the payload property
+  // b/c only concerned with info returned inside the request.
 };
 
 export const fetchPost = id => async dispatch => {
@@ -36,11 +39,18 @@ export const fetchPost = id => async dispatch => {
 };
 
 export const createPost = formValues => async (dispatch, getState) => {
-  // when returning a function from an action creator the function gets called automatically by redux thunk with two arguments. The first argument is the dispatch function, and that second argument is the getState function. getState can be used to grab info from the redux store.
+  // When returning a function from an action creator the function gets
+  // called automatically by Redux Thunk with two arguments. The first is the
+  // dispatch function, and that second argument is the getState function.
+  // getState can be used to grab info from the redux store.
   const { userId } = getState().auth;
-  // Destructure userId from calling getState().auth... getState returns the entire state object. Then access the auth state to grab the userId.
+  // Destructure userId from getState().auth... Calling getState returns
+  // the entire state object. It then accesses the auth state to get the userId.
   const response = await posts.post("/posts", { ...formValues, userId });
-  // Combine formValues and userID into one object. ...formValues takes all the key value pairs that have form values and add it to that object... New posts to the API will then have all the form values as well as the userId of the created post.
+  // Combines formValues and userID into one object. ...formValues
+  // takes all the key value pairs that have form values and adds it to
+  // that object... New posts to the API will then have all the form
+  // values as well as the userId of the created post.
   dispatch({ type: CREATE_POST, payload: response.data });
   history.push("/");
 };
