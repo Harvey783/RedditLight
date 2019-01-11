@@ -5,7 +5,7 @@
 ### Install Instructions
 
 1.  Clone the [repository](https://github.com/Harvey783/react-redux-assessment-app)
-2.  \$ cd react-redux-assesment-app
+2.  \$ cd react-redux-assessment-app
 3.  Open up two terminals
 4.  \$ cd app-api
 5.  \$ bundle install
