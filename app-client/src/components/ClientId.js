@@ -1,1 +1,2 @@
-export const clientId = "PASTE GOOGLE OATH CLIENTID HERE!";
+export const clientId =
+  "1058742191222-g6utvrli9dt01n71d2elocr2u4aq2usv.apps.googleusercontent.com";
