@@ -1,1 +1,1 @@
-export const clientId = "PASTE GOOGLE OATH CLIENTID HERE";
+export const clientId = "PASTE GOOGLE OATH CLIENTID HERE!";
