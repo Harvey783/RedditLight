@@ -41,7 +41,7 @@ export const fetchPost = id => async dispatch => {
 export const createPost = formValues => async (dispatch, getState) => {
   // When returning a function from an action creator the function gets
   // called automatically by Redux Thunk with two arguments. The first is the
-  // dispatch function, and that second argument is the getState function.
+  // dispatch function, and the second argument is the getState function.
   // getState can be used to grab info from the redux store.
   const { userId } = getState().auth;
   // Destructure userId from getState().auth... Calling getState returns

@@ -17,17 +17,16 @@ class PostDelete extends React.Component {
       // Trying to place some sibling elements next to
       // each other but wrapping them in a single outside
       // <div> tag throws off styling... React Fragments
-      //   return multiple elements or assigned multiple
-      //   elements to a single variable, and are rendered
-      //   without any change to the HTML
+      // return multiple elements or assigned multiple
+      // elements to a single variable, and are rendered
+      // without any change to the HTML
       <React.Fragment>
         <button
           onClick={() => this.props.deletePost(id)}
           // An arrow function is passed into the
-          // onClick hadler. An arrow function is used to
-          // call deletePost with a particular ID b/c
+          // onClick hadler. Calls deletePost with an ID
           // passing a reference to a function off to
-          // onClick allows the ID of the deleted post to
+          // onClick allowing the ID of the deleted post to
           // be passed as well.
           className="ui button negative"
         >
@@ -41,12 +40,10 @@ class PostDelete extends React.Component {
   }
 
   renderContent() {
-    // Returns a placeholder when no post is present.
-    // Otherwise it displays the title of the post
-    if (!this.props.post) {
-      return "Are you sure you want to delete this post?";
+    // Displays the title of the post to be deleted
+    if (this.props.post) {
+      return `Delete ${this.props.post.title}???`;
     }
-    return `Delete ${this.props.post.title}???`;
   }
 
   render() {
@@ -55,8 +52,8 @@ class PostDelete extends React.Component {
         content={this.renderContent()}
         actions={this.renderActions()}
         onDismiss={() => history.push("/")}
-        // what happens when a user attempts to click
-        // outside and/or dismiss the modal
+        // onDismiss is for when a user clicks
+        // outside the Modal
       />
     );
   }
