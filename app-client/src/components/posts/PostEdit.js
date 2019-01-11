@@ -22,10 +22,10 @@ class PostEdit extends React.Component {
         <PostForm
           initialValues={_.pick(this.props.post, "title", "description")}
           // Pass in the redux-form prop, initialValues, to PostForm...
-          // _.pick selects values of the properties from the post
-          // object to pass down as initial values... Renders an initialValuees
-          // object containing the post's title and description property values.
-          // Submitting the form calls the onSubmit callback handler
+          // _.pick selects values of the properties from the post object
+          // to pass down as initial values... Renders an initialValuees
+          // object containing the post's title and description property
+          // values. Submitting the form calls the onSubmit callback handler
           onSubmit={this.onSubmit}
         />
       </div>

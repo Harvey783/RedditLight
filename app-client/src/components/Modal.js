@@ -11,9 +11,9 @@ const Modal = props => {
     <div onClick={props.onDismiss} className="ui dimmer modals visible active">
       <div
         onClick={e => e.stopPropagation()}
-        // whenever a event occurs call e.stopPropagation to make sure that
-        // the event does not continue to bubble up causing the window
-        // to get dismissed by navigating away
+        // whenever a event occurs e.stopPropagation ensures
+        // the event does not continue to bubble up causing
+        // the window to get dismissed by navigating away
         className="ui standard modal visible active"
       >
         <div className="header" />

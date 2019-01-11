@@ -74,9 +74,8 @@ const checkForm = formValues => {
   }
 
   return errors;
-  // Returns an object placing a key-value pair with
-  // the name of the field and the error message for
-  // each invalid field... I.E. errors = { title: 'You must enter a title'}
+  // Returns an object placing a key-value pair with fieldname and the error
+  // message... I.E. errors = { title: 'You must enter a title'}
 };
 
 export default reduxForm({
