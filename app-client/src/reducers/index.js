@@ -9,8 +9,7 @@ export default combineReducers({
   posts: postReducer
 });
 
-// combineReducers turns an object whose values are
-// different reducing functions into a single
-// reducing function that you can pass to createStore.
+// combineReducers turns reducers into a single
+// reducing function that can pass to createStore.
 // The resulting reducer calls every child reducer,
 // and gathers their results into a single state object.

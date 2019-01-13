@@ -14,19 +14,16 @@ class PostDelete extends React.Component {
     const { id } = this.props.match.params;
 
     return (
-      // Trying to place some sibling elements next to
-      // each other but wrapping them in a single outside
-      // <div> tag throws off styling... React Fragments
-      // return multiple elements or assigned multiple
-      // elements to a single variable, and are rendered
-      // without any change to the HTML
+      // Fragments let you group a list of
+      // children without adding extra
+      // nodes to the DOM. Needed so Delete
+      // and Cancel links remain inline.
       <React.Fragment>
         <button
           onClick={() => this.props.deletePost(id)}
-          // An arrow function is passed into the
-          // onClick hadler. Calls deletePost with an ID
-          // passing a reference to a function off to
-          // onClick allowing the ID of the deleted post to
+          // A call to deletePost(id) is passed
+          // to onClick. Passing a function's reference
+          // off allows the ID of the deleted post to
           // be passed as well.
           className="ui button negative"
         >
@@ -52,7 +49,7 @@ class PostDelete extends React.Component {
         content={this.renderContent()}
         actions={this.renderActions()}
         onDismiss={() => history.push("/")}
-        // onDismiss is for when a user clicks
+        // onDismiss for when a user clicks
         // outside the Modal
       />
     );
@@ -61,14 +58,10 @@ class PostDelete extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
   return { post: state.posts[ownProps.match.params.id] };
-  // Called with both the state from the redux store
-  // and a second argument of ownProps. ownProps is the
-  // exact same props object that is going to be passed
-  // to the component... Use ownPops to look at props.match
-  // and pull out the ID of the required post... Returns an
-  // object with the key of post. State.posts is an object
-  // containing all the different posts where all the keys
-  // are the IDs of each post.
+  // State.posts is an object containing all the posts.
+  // Use ownPops to look at props.match.params.id
+  // and pull out the ID of the required post.
+  // Returns an object with that ID's post.
 };
 
 export default connect(

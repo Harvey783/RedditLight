@@ -3,10 +3,9 @@ import { Field, reduxForm } from "redux-form";
 
 class PostForm extends React.Component {
   renderError({ error, touched }) {
-    // destructurig out the error and touched properties.
+    // Destructurig out the error and touched properties.
     if (touched && error) {
-      // if the user has touched the form and there is an
-      // error then display error inside of header.
+      // Displays errors if both arguements are true
       return (
         <div className="ui error message">
           <div className="header">{error}</div>
@@ -27,8 +26,9 @@ class PostForm extends React.Component {
       </div>
       // input {...input} takes all the input object's
       // properties and adds them as props to the input element.
-      // Meta decides whether or not to show the error,
-      // when renderError is called.
+      // When renderError is called Meta decides whether
+      // error is shown.
+      //
     );
   };
 
@@ -45,7 +45,7 @@ class PostForm extends React.Component {
           // Called anytime the form is submitted. this.props.handleSubmit
           // is a callback function provided by redux form, which is called
           // with the onSubmit callback method. handleSubmit automatically
-          // receives the event object and automtially calls prevent default.
+          // receives the event object and calls prevent default.
           className="ui form error"
           // error classname displays form errors
         >
@@ -74,8 +74,9 @@ const checkForm = formValues => {
   }
 
   return errors;
-  // Returns an object placing a key-value pair with fieldname and the error
-  // message... I.E. errors = { title: 'You must enter a title'}
+  // Returns an object placing a key-value pair with
+  // fieldname and the error message.
+  // I.E. errors = { title: 'You must enter a title'}
 };
 
 export default reduxForm({

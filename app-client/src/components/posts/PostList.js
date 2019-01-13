@@ -67,12 +67,10 @@ class PostList extends React.Component {
 const mapStateToProps = state => {
   return {
     posts: Object.values(state.posts),
-    // Return a object with a post property containg all of the posts.
-    // Call Object.values to get a list of the posts inside an array
-    // and then pass in state.posts.... Object.values is a built in js
-    // function that takes an object as an argument. All the different
-    // values inside of that object are pulled out and then inserted
-    // into an array.
+    // Returns a object with a posts prop containg all the posts.
+    // State.posts is passed into the Object.values, which is a JS
+    // function that takes an object's values and inserts them into
+    // an array.
     currentUserId: state.auth.userId,
     isSignedIn: state.auth.isSignedIn
     // authentication status
