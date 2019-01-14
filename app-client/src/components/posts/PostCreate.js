@@ -1,7 +1,7 @@
-import React from 'react';
-import PostForm from '../PostForm';
-import { connect } from 'react-redux';
-import { createPost } from '../../actions';
+import React from "react";
+import PostForm from "../PostForm";
+import { connect } from "react-redux";
+import { createPost } from "../../actions";
 
 class PostCreate extends React.Component {
   onSubmit = formValues => {
@@ -11,7 +11,7 @@ class PostCreate extends React.Component {
   render() {
     return (
       <div>
-        <h3>Create a Post</h3>
+        <h4>Create a Post</h4>
         <PostForm onSubmit={this.onSubmit} />
       </div>
     );

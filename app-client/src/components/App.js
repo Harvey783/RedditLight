@@ -1,15 +1,15 @@
-import React from 'react';
-import PostCreate from './posts/PostCreate';
-import PostEdit from './posts/PostEdit';
-import PostDelete from './posts/PostDelete';
-import PostList from './posts/PostList';
-import Header from './Header';
-import history from './History';
-import { Router, Route, Switch } from 'react-router-dom';
+import React from "react";
+import PostCreate from "./posts/PostCreate";
+import PostEdit from "./posts/PostEdit";
+import PostDelete from "./posts/PostDelete";
+import PostList from "./posts/PostList";
+import Header from "./Header";
+import history from "./History";
+import { Router, Route, Switch } from "react-router-dom";
 
 const App = () => {
   return (
-    <div>
+    <div className="ui container">
       <Router history={history}>
         <div>
           <Header />
