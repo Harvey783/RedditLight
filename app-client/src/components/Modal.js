@@ -16,7 +16,7 @@ const Modal = props => {
         // the window to get dismissed by navigating away
         className="ui standard modal visible active"
       >
-        <div className="header" />
+        <div className="header">{props.title}</div>
         <div className="content">{props.content}</div>
         <div className="actions">{props.actions}</div>
       </div>
