@@ -24,20 +24,22 @@ class PostList extends React.Component {
   }
 
   renderPostList() {
-    return this.props.posts.map(post => {
-      return (
-        // Calls renderIconLinks and passes the post
-        // currently being iterated over
-        <div className="item" key={post.id}>
-          {this.renderIconLinks(post)}
-          <i className="large middle aligned thumbtack icon" />
-          <div className="content">
-            <div className="header">{post.title}</div>
-            <div className="description">{post.description}</div>
+    if (this.props.isSignedIn) {
+      return this.props.posts.map(post => {
+        return (
+          // Calls renderIconLinks and passes the post
+          // currently being iterated over
+          <div className="item" key={post.id}>
+            {this.renderIconLinks(post)}
+            <i className="large middle aligned thumbtack icon" />
+            <div className="content">
+              <div className="header">{post.title}</div>
+              <div className="description">{post.description}</div>
+            </div>
           </div>
-        </div>
-      );
-    });
+        );
+      });
+    }
   }
 
   renderPostCreate() {
