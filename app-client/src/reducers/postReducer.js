@@ -18,19 +18,12 @@ export default (state = {}, action) => {
     // the array is now the key for that object in the new state object.
     case FETCH_POST:
       return { ...state, [action.payload.id]: action.payload };
-    // Takes all the properties or key value pairs out of the existing
-    // state object and into a new object. Assigns action.payload
-    // to the ID key
     case CREATE_POST:
       return { ...state, [action.payload.id]: action.payload };
     case EDIT_POST:
       return { ...state, [action.payload.id]: action.payload };
     case DELETE_POST:
       return _.omit(state, action.payload);
-    // Lodash's omit function creates a new object with all
-    // the properties from state minus whatever is passed in
-    // as the action. Here action.payload is the key with
-    // payload being the id itself
     default:
       return state;
   }

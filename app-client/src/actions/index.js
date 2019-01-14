@@ -14,9 +14,6 @@ export const signIn = userId => {
   return {
     type: SIGN_IN,
     payload: userId
-    // Assigning userId as a payload property allows
-    // the action creator to receive it as an arguement
-    // and pass it through to the reducer.
   };
 };
 
@@ -29,8 +26,6 @@ export const signOut = () => {
 export const fetchPosts = () => async dispatch => {
   const response = await posts.get("/posts");
   dispatch({ type: FETCH_POSTS, payload: response.data });
-  // Returning response.data b/c only concerned with
-  // info returned inside the request.
 };
 
 export const fetchPost = id => async dispatch => {

@@ -8,8 +8,3 @@ export default combineReducers({
   form: formReducer,
   posts: postReducer
 });
-
-// combineReducers turns reducers into a single
-// reducing function that can pass to createStore.
-// The resulting reducer calls every child reducer,
-// and gathers their results into a single state object.

@@ -21,10 +21,6 @@ class PostDelete extends React.Component {
       <React.Fragment>
         <button
           onClick={() => this.props.deletePost(id)}
-          // A call to deletePost(id) is passed
-          // to onClick. Passing a function's reference
-          // off allows the ID of the deleted post to
-          // be passed as well.
           className="ui button negative"
         >
           Delete
@@ -37,7 +33,6 @@ class PostDelete extends React.Component {
   }
 
   renderContent() {
-    // Displays the title of the post to be deleted
     if (this.props.post) {
       return `Delete ${this.props.post.title}???`;
     }
@@ -58,10 +53,6 @@ class PostDelete extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
   return { post: state.posts[ownProps.match.params.id] };
-  // State.posts is an object containing all the posts.
-  // Use ownPops to look at props.match.params.id
-  // and pull out the ID of the required post.
-  // Returns an object with that ID's post.
 };
 
 export default connect(

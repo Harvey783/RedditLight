@@ -42,7 +42,6 @@ class PostList extends React.Component {
 
   renderPostCreate() {
     if (this.props.isSignedIn) {
-      // If signed in show Create Link
       return (
         <div style={{ textAlign: "right" }}>
           <Link to="/posts/new" className="ui mini primary button">
@@ -73,7 +72,6 @@ const mapStateToProps = state => {
     // an array.
     currentUserId: state.auth.userId,
     isSignedIn: state.auth.isSignedIn
-    // authentication status
   };
 };
 
