@@ -11,7 +11,7 @@ class PostEdit extends React.Component {
 
   onSubmit = formValues => {
     this.props.editPost(this.props.match.params.id, formValues);
-    // PostForm callback passing in the ID and values to editPost
+    // PostForm callback
   };
 
   render() {
