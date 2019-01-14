@@ -28,7 +28,6 @@ class PostForm extends React.Component {
       // properties and adds them as props to the input element.
       // When renderError is called Meta decides whether
       // error is shown.
-      //
     );
   };
 
