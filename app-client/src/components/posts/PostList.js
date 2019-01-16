@@ -35,6 +35,7 @@ class PostList extends React.Component {
             <div className="content">
               <div className="header">{post.title}</div>
               <div className="description">{post.description}</div>
+              <div className="description">{post.likeCount}</div>
             </div>
           </div>
         );
