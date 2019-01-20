@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { fetchPosts } from "../../actions";
+import { fetchPosts, likePost, fetchPost, editPost } from "../../actions";
 
 class PostList extends React.Component {
   componentDidMount() {
@@ -11,7 +11,7 @@ class PostList extends React.Component {
   renderIconLinks(post) {
     if (post.userId === this.props.currentUserId) {
       return (
-        <div className="right floated content">
+        <div className="middle aligned right floated content">
           <Link to={`/posts/${post.id}/edit`}>
             <i className="grey edit outline icon" />
           </Link>
@@ -31,11 +31,18 @@ class PostList extends React.Component {
           // currently being iterated over
           <div className="item" key={post.id}>
             {this.renderIconLinks(post)}
-            <i className="large middle aligned thumbtack icon" />
+
             <div className="content">
               <div className="header">{post.title}</div>
               <div className="description">{post.description}</div>
-              <div className="description">{post.likeCount}</div>
+              <br />
+              <button
+                onClick={() => this.props.likePost(post.id)}
+                className="mini ui basic blue button"
+              >
+                <i className="heart icon" />
+                {post.likeCount}
+              </button>
             </div>
           </div>
         );
@@ -66,9 +73,10 @@ class PostList extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, ownProps) => {
   return {
     posts: Object.values(state.posts),
+    post: state.posts[ownProps.match.params.id],
     // Returns a object with a posts prop containg all the posts.
     // State.posts is passed into the Object.values, which is a JS
     // function that takes an object's values and inserts them into
@@ -80,5 +88,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { fetchPosts }
+  { fetchPosts, likePost, fetchPost, editPost }
 )(PostList);

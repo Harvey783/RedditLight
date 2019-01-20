@@ -5,6 +5,7 @@ import {
   FETCH_POST,
   CREATE_POST,
   DELETE_POST,
+  LIKE_POST,
   EDIT_POST
 } from "./types";
 import posts from "../components/api/posts";
@@ -38,8 +39,6 @@ export const createPost = formValues => async (dispatch, getState) => {
   // Destructure userId from getState().auth... Calling getState returns
   // the entire state object. It then accesses the auth state to get the userId.
   const response = await posts.post("/posts", { ...formValues, userId });
-  // Combines formValues and userID into one object so posts to the API
-  // will have both when created.
   dispatch({ type: CREATE_POST, payload: response.data });
   history.push("/");
 };
@@ -49,6 +48,18 @@ export const editPost = (id, formValues) => async dispatch => {
   dispatch({ type: EDIT_POST, payload: response.data });
   history.push("/");
 };
+
+export const likePost = id => async dispatch => {
+  const response = await posts.patch(`/posts/${id}`);
+  dispatch({ type: LIKE_POST, payload: response.data });
+  history.push("/");
+};
+
+// export const likePost = id => async dispatch => {
+//   const response = await posts.patch(`/posts/${id}`);
+//   dispatch({ type: LIKE_POST, payload: response.data });
+//   history.push("/");
+// };
 
 export const deletePost = id => async dispatch => {
   await posts.delete(`/posts/${id}`);

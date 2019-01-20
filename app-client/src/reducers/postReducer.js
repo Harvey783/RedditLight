@@ -3,6 +3,7 @@ import {
   FETCH_POST,
   CREATE_POST,
   EDIT_POST,
+  LIKE_POST,
   DELETE_POST
 } from "../actions/types";
 import _ from "lodash";
@@ -21,6 +22,8 @@ export default (state = {}, action) => {
     case CREATE_POST:
       return { ...state, [action.payload.id]: action.payload };
     case EDIT_POST:
+      return { ...state, [action.payload.id]: action.payload };
+    case LIKE_POST:
       return { ...state, [action.payload.id]: action.payload };
     case DELETE_POST:
       return _.omit(state, action.payload);
