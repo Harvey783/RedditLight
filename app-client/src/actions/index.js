@@ -49,17 +49,14 @@ export const editPost = (id, formValues) => async dispatch => {
   history.push("/");
 };
 
-export const likePost = id => async dispatch => {
-  const response = await posts.patch(`/posts/${id}`);
+export const likePost = post => async dispatch => {
+  let p = { ...post };
+  p.likeCount++;
+  debugger;
+  const response = await posts.patch(`/posts/${p.id}`, { post: p });
   dispatch({ type: LIKE_POST, payload: response.data });
   history.push("/");
 };
-
-// export const likePost = id => async dispatch => {
-//   const response = await posts.patch(`/posts/${id}`);
-//   dispatch({ type: LIKE_POST, payload: response.data });
-//   history.push("/");
-// };
 
 export const deletePost = id => async dispatch => {
   await posts.delete(`/posts/${id}`);

@@ -37,7 +37,7 @@ class PostList extends React.Component {
               <div className="description">{post.description}</div>
               <br />
               <button
-                onClick={() => this.props.likePost(post.id)}
+                onClick={() => this.props.likePost(post)}
                 className="mini ui basic blue button"
               >
                 <i className="heart icon" />

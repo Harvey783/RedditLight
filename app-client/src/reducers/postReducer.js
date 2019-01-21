@@ -24,7 +24,9 @@ export default (state = {}, action) => {
     case EDIT_POST:
       return { ...state, [action.payload.id]: action.payload };
     case LIKE_POST:
-      return { ...state, [action.payload.id]: action.payload };
+      let endResult = { ...state, [action.payload.id]: action.payload };
+      debugger;
+      return endResult;
     case DELETE_POST:
       return _.omit(state, action.payload);
     default:
