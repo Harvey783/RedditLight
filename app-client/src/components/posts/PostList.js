@@ -31,7 +31,6 @@ class PostList extends React.Component {
           // currently being iterated over
           <div className="item" key={post.id}>
             {this.renderIconLinks(post)}
-
             <div className="content">
               <div className="header">{post.title}</div>
               <div className="description">{post.description}</div>
@@ -44,6 +43,7 @@ class PostList extends React.Component {
                 {post.likeCount}
               </button>
             </div>
+            <br />
           </div>
         );
       });
