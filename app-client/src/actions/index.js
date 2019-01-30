@@ -36,8 +36,6 @@ export const fetchPost = id => async dispatch => {
 
 export const createPost = formValues => async (dispatch, getState) => {
   const { userId } = getState().auth;
-  // Destructure userId from getState().auth... Calling getState returns
-  // the entire state object. It then accesses the auth state to get the userId.
   const response = await posts.post("/posts", { ...formValues, userId });
   dispatch({ type: CREATE_POST, payload: response.data });
   history.push("/");
