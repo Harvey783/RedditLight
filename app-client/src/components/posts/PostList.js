@@ -73,10 +73,9 @@ class PostList extends React.Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = state => {
   return {
     posts: Object.values(state.posts),
-    post: state.posts[ownProps.match.params.id],
     // Returns a object with a posts prop containg all the posts.
     // State.posts is passed into the Object.values, which is a JS
     // function that takes an object's values and inserts them into
