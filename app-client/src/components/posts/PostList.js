@@ -27,8 +27,6 @@ class PostList extends React.Component {
     if (this.props.isSignedIn) {
       return this.props.posts.map(post => {
         return (
-          // Calls renderIconLinks and passes the post
-          // currently being iterated over
           <div className="item" key={post.id}>
             {this.renderIconLinks(post)}
             <div className="content">
