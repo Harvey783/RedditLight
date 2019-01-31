@@ -20,7 +20,7 @@ class PostList extends React.Component {
   }
 
   sortLikes = () => {
-    const { posts } = this.state;
+    const { posts } = this.props;
     posts.sort(function(a, b) {
       return b.likeCount - a.likeCount;
     });
@@ -28,7 +28,7 @@ class PostList extends React.Component {
   };
 
   handleClick = () => {
-    const sortedPosts = this.state.posts.sort(function(a, b) {
+    const sortedPosts = this.props.posts.sort(function(a, b) {
       return b.likeCount - a.likeCount;
     });
     this.setState({
