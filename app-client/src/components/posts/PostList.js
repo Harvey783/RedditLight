@@ -11,14 +11,6 @@ class PostList extends React.Component {
     };
   }
 
-  componentWillReceiveProps(props) {
-    if (props.posts.length > 0) {
-      this.setState({
-        posts: props.posts
-      });
-    }
-  }
-
   sortLikes = () => {
     const { posts } = this.props;
     posts.sort(function(a, b) {
@@ -40,6 +32,18 @@ class PostList extends React.Component {
     this.props.fetchPosts();
   }
 
+  renderSortLikes() {
+    if (this.props.isSignedIn) {
+      return (
+        <div className="item">
+          <button onClick={this.sortLikes} className="mini ui instagram button">
+            MOST LIKED
+          </button>
+        </div>
+      );
+    }
+  }
+
   renderIconLinks(post) {
     if (post.userId === this.props.currentUserId) {
       return (
@@ -50,18 +54,6 @@ class PostList extends React.Component {
           <Link to={`/posts/${post.id}/delete`}>
             <i className="red x icon" />
           </Link>
-        </div>
-      );
-    }
-  }
-
-  renderSortLikes() {
-    if (this.props.isSignedIn) {
-      return (
-        <div className="middle aligned content">
-          <button onClick={this.sortLikes} className="ui mini vk button">
-            Sort Likes
-          </button>
         </div>
       );
     }
@@ -97,7 +89,7 @@ class PostList extends React.Component {
       return (
         <div style={{ textAlign: "right" }}>
           <Link to="/posts/new" className="ui mini vk button">
-            Create Post
+            CREATE POST
           </Link>
         </div>
       );
