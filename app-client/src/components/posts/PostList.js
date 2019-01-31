@@ -4,6 +4,42 @@ import { Link } from "react-router-dom";
 import { fetchPosts, likePost } from "../../actions";
 
 class PostList extends React.Component {
+  constructor(props) {
+    super(props);
+
+    // Define the initial state:
+    this.state = {
+      posts: []
+    };
+  }
+
+  componentWillReceiveProps(props) {
+    if (props.posts.length > 0) {
+      this.setState({
+        posts: props.posts
+      });
+    }
+  }
+  sortLikes = () => {
+    const { posts } = this.state;
+    posts.sort(function(a, b) {
+      return b.likeCount - a.likeCount;
+    });
+    this.setState({ posts });
+  };
+
+  handleClick = beers => {
+    // Update state here
+    //debugger;
+    const sortedPosts = this.state.posts.sort(function(a, b) {
+      return b.likeCount - a.likeCount;
+    });
+    console.log(sortedPosts);
+    this.setState({
+      posts: sortedPosts
+    });
+  };
+
   componentDidMount() {
     this.props.fetchPosts();
   }
@@ -18,6 +54,18 @@ class PostList extends React.Component {
           <Link to={`/posts/${post.id}/delete`}>
             <i className="red x icon" />
           </Link>
+        </div>
+      );
+    }
+  }
+
+  renderSortLikes() {
+    if (this.props.isSignedIn) {
+      return (
+        <div className="middle aligned content">
+          <button onClick={this.sortLikes} className="ui mini vk button">
+            Sort Likes
+          </button>
         </div>
       );
     }
@@ -52,7 +100,7 @@ class PostList extends React.Component {
     if (this.props.isSignedIn) {
       return (
         <div style={{ textAlign: "right" }}>
-          <Link to="/posts/new" className="ui mini primary button">
+          <Link to="/posts/new" className="ui mini vk button">
             Create Post
           </Link>
         </div>
@@ -63,6 +111,7 @@ class PostList extends React.Component {
   render() {
     return (
       <div>
+        {this.renderSortLikes()}
         <br />
         <div className="ui celled list">{this.renderPostList()}</div>
         {this.renderPostCreate()}
@@ -74,10 +123,6 @@ class PostList extends React.Component {
 const mapStateToProps = state => {
   return {
     posts: Object.values(state.posts),
-    // Returns a object with a posts prop containg all the posts.
-    // State.posts is passed into the Object.values, which is a JS
-    // function that takes an object's values and inserts them into
-    // an array.
     currentUserId: state.auth.userId,
     isSignedIn: state.auth.isSignedIn
   };
