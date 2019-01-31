@@ -19,15 +19,6 @@ class PostList extends React.Component {
     this.setState({ posts });
   };
 
-  handleClick = () => {
-    const sortedPosts = this.props.posts.sort(function(a, b) {
-      return b.likeCount - a.likeCount;
-    });
-    this.setState({
-      posts: sortedPosts
-    });
-  };
-
   componentDidMount() {
     this.props.fetchPosts();
   }
@@ -36,7 +27,7 @@ class PostList extends React.Component {
     if (this.props.isSignedIn) {
       return (
         <div className="item">
-          <button onClick={this.sortLikes} className="mini ui instagram button">
+          <button onClick={this.sortLikes} className="ui mini instagram button">
             MOST LIKED
           </button>
         </div>
