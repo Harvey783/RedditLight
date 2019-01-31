@@ -6,8 +6,6 @@ import { fetchPosts, likePost } from "../../actions";
 class PostList extends React.Component {
   constructor(props) {
     super(props);
-
-    // Define the initial state:
     this.state = {
       posts: []
     };
@@ -20,6 +18,7 @@ class PostList extends React.Component {
       });
     }
   }
+
   sortLikes = () => {
     const { posts } = this.state;
     posts.sort(function(a, b) {
@@ -28,13 +27,10 @@ class PostList extends React.Component {
     this.setState({ posts });
   };
 
-  handleClick = beers => {
-    // Update state here
-    //debugger;
+  handleClick = () => {
     const sortedPosts = this.state.posts.sort(function(a, b) {
       return b.likeCount - a.likeCount;
     });
-    console.log(sortedPosts);
     this.setState({
       posts: sortedPosts
     });
