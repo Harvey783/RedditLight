@@ -7,16 +7,23 @@ class PostList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      posts: []
+      posts: [],
+      hasBeenClicked: true
     };
   }
 
   sortLikes = () => {
     const { posts } = this.props;
-    posts.sort(function(a, b) {
-      return b.likeCount - a.likeCount;
+    let sortedPosts = posts;
+    if (this.state.hasBeenClicked) {
+      sortedPosts = posts.sort((a, b) => b.likeCount - a.likeCount);
+    } else {
+      sortedPosts = posts.sort((a, b) => a.likeCount - b.likeCount);
+    }
+    this.setState({
+      posts: sortedPosts,
+      hasBeenClicked: !this.state.hasBeenClicked
     });
-    this.setState({ posts });
   };
 
   componentDidMount() {
@@ -28,7 +35,8 @@ class PostList extends React.Component {
       return (
         <div className="item">
           <button onClick={this.sortLikes} className="ui mini instagram button">
-            MOST LIKED
+            <i className=" large white sort icon" />
+            SORT BY LIKES
           </button>
         </div>
       );
