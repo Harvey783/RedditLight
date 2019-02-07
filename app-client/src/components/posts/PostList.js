@@ -28,7 +28,7 @@ class PostList extends React.Component {
       return (
         <div className="item">
           <button onClick={this.sortLikes} className="ui mini instagram button">
-            MOST LIKED
+            Most Liked
           </button>
         </div>
       );
@@ -80,7 +80,7 @@ class PostList extends React.Component {
       return (
         <div style={{ textAlign: "right" }}>
           <Link to="/posts/new" className="ui mini vk button">
-            CREATE POST
+            New Post
           </Link>
         </div>
       );
