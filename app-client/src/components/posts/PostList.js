@@ -13,9 +13,7 @@ class PostList extends React.Component {
 
   sortLikes = () => {
     const { posts } = this.props;
-    posts.sort((a, b) => {
-      return b.likeCount - a.likeCount;
-    });
+    posts.sort((a, b) => b.likeCount - a.likeCount);
     this.setState({ posts });
   };
 
