@@ -11,15 +11,15 @@ class PostList extends React.Component {
     };
   }
 
+  componentDidMount() {
+    this.props.fetchPosts();
+  }
+
   sortLikes = () => {
     const { posts } = this.props;
     posts.sort((a, b) => b.likeCount - a.likeCount);
     this.setState({ posts });
   };
-
-  componentDidMount() {
-    this.props.fetchPosts();
-  }
 
   renderSortLikes() {
     if (this.props.isSignedIn) {
@@ -90,7 +90,7 @@ class PostList extends React.Component {
       <div>
         {this.renderSortLikes()}
         <br />
-        <div className="ui celled list">{this.renderPostList()}</div>
+        <div className="ui relaxed celled list">{this.renderPostList()}</div>
         {this.renderPostCreate()}
       </div>
     );

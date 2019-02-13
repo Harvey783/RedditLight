@@ -27,7 +27,7 @@ class PostForm extends React.Component {
           component={this.renderInput}
           label="Enter Description"
         />
-        <button className="ui button primary">Submit</button>
+        <button className="ui mini instagram button">Submit</button>
       </form>
     );
   }
