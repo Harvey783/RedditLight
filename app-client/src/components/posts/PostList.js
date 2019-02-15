@@ -1,7 +1,7 @@
-import React from "react";
-import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-import { fetchPosts, likePost } from "../../actions";
+import React from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { fetchPosts, likePost } from '../../actions';
 
 class PostList extends React.Component {
   constructor(props) {
@@ -11,17 +11,20 @@ class PostList extends React.Component {
     };
   }
 
-  sortLikes = () => {
+  sortMostLikedPosts = () => {
     const { posts } = this.props;
     posts.sort((a, b) => b.likeCount - a.likeCount);
     this.setState({ posts });
   };
 
-  renderSortLikes() {
+  renderSortMostLikedPosts() {
     if (this.props.isSignedIn) {
       return (
         <div className="item">
-          <button onClick={this.sortLikes} className="ui mini instagram button">
+          <button
+            onClick={this.sortMostLikedPosts}
+            className="ui mini instagram button"
+          >
             Most Liked
           </button>
         </div>
@@ -72,7 +75,7 @@ class PostList extends React.Component {
   renderPostCreate() {
     if (this.props.isSignedIn) {
       return (
-        <div style={{ textAlign: "right" }}>
+        <div style={{ textAlign: 'right' }}>
           <Link to="/posts/new" className="ui mini vk button">
             New Post
           </Link>
@@ -86,9 +89,10 @@ class PostList extends React.Component {
   }
 
   render() {
+    console.log(this.props.posts);
     return (
       <div>
-        {this.renderSortLikes()}
+        {this.renderSortMostLikedPosts()}
         <br />
         <div className="ui relaxed celled list">{this.renderPostList()}</div>
         {this.renderPostCreate()}
