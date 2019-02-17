@@ -11,18 +11,21 @@ class PostList extends React.Component {
     };
   }
 
-  sortMostLikedPosts = () => {
-    const { posts } = this.props;
-    posts.sort((a, b) => b.likeCount - a.likeCount);
-    this.setState({ posts });
+  sortMostLiked = () => {
+    this.setState(state => ({
+      posts: {
+        ...state.posts,
+        ...this.props.posts.sort((a, b) => b.likeCount - a.likeCount)
+      }
+    }));
   };
 
-  renderSortMostLikedPosts() {
+  renderSortMostLiked() {
     if (this.props.isSignedIn) {
       return (
         <div className="item">
           <button
-            onClick={this.sortMostLikedPosts}
+            onClick={this.sortMostLiked}
             className="ui mini instagram button"
           >
             Most Liked
@@ -92,7 +95,7 @@ class PostList extends React.Component {
     console.log(this.props.posts);
     return (
       <div>
-        {this.renderSortMostLikedPosts()}
+        {this.renderSortMostLiked()}
         <br />
         <div className="ui relaxed celled list">{this.renderPostList()}</div>
         {this.renderPostCreate()}
