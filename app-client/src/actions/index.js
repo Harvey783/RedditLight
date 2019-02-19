@@ -27,6 +27,7 @@ export const signOut = () => {
 export const fetchPosts = () => async dispatch => {
   const response = await posts.get("/posts");
   dispatch({ type: FETCH_POSTS, payload: response.data });
+  return response.data;
 };
 
 export const fetchPost = id => async dispatch => {

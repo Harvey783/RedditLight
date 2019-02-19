@@ -7,18 +7,25 @@ class PostList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      posts: []
+      posts: [],
+      sorted: false
     };
   }
 
   sortMostLiked = () => {
-    this.setState(state => ({
-      posts: {
-        ...state.posts,
-        ...this.props.posts.sort((a, b) => b.likeCount - a.likeCount)
-      }
+    this.setState(() => ({
+      posts: this.props.posts
+        .concat()
+        .sort((a, b) => b.likeCount - a.likeCount),
+      sorted: true
     }));
   };
+
+  // sortMostLiked = () => {
+  //   const { posts } = this.props;
+  //   posts.sort((a, b) => b.likeCount - a.likeCount);
+  //   this.setState({ posts });
+  // };
 
   renderSortMostLiked() {
     if (this.props.isSignedIn) {
@@ -50,9 +57,18 @@ class PostList extends React.Component {
     }
   }
 
+  handleLike = post => {
+    this.props.likePost(post).then(() => {
+      if (this.state.sorted) {
+        this.sortMostLiked();
+      }
+    });
+  };
+
   renderPostList() {
     if (this.props.isSignedIn) {
-      return this.props.posts.map(post => {
+      const posts = this.state.sorted ? this.state.posts : this.props.posts;
+      return posts.map(post => {
         return (
           <div className="item" key={post.id}>
             {this.renderIconLinks(post)}
@@ -61,7 +77,7 @@ class PostList extends React.Component {
               <div className="description">{post.description}</div>
               <br />
               <button
-                onClick={() => this.props.likePost(post)}
+                onClick={() => this.handleLike(post)}
                 className="mini ui basic blue button"
               >
                 <i className="heart icon" />
@@ -87,12 +103,8 @@ class PostList extends React.Component {
     }
   }
 
-  componentDidMount() {
-    this.props.fetchPosts();
-  }
-
   render() {
-    console.log(this.state.posts);
+    console.log(this.props.posts);
     return (
       <div>
         {this.renderSortMostLiked()}
