@@ -21,12 +21,6 @@ class PostList extends React.Component {
     }));
   };
 
-  // sortMostLiked = () => {
-  //   const { posts } = this.props;
-  //   posts.sort((a, b) => b.likeCount - a.likeCount);
-  //   this.setState({ posts });
-  // };
-
   renderSortMostLiked() {
     if (this.props.isSignedIn) {
       return (
