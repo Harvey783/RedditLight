@@ -8,44 +8,46 @@ class PostList extends React.Component {
     super(props);
     this.state = {
       posts: [],
-      sorted: false
+      sorted: false,
+      hasBeenClicked: false
     };
   }
 
-  sortMostLiked = () => {
-    this.setState(() => ({
-      posts: this.props.posts
-        .concat()
-        .sort((a, b) => b.likeCount - a.likeCount),
-      sorted: true
-    }));
+  sortLikes = () => {
+    if (!this.state.hasBeenClicked) {
+      this.setState(() => ({
+        posts: this.props.posts
+          .concat()
+          .sort((a, b) => b.likeCount - a.likeCount),
+        sorted: true,
+        hasBeenClicked: true
+      }));
+    } else {
+      this.setState(() => ({
+        posts: this.props.posts
+          .concat()
+          .sort((a, b) => a.likeCount - b.likeCount),
+        sorted: true,
+        hasBeenClicked: false
+      }));
+    }
   };
 
-  renderSortMostLiked() {
-    if (this.props.isSignedIn) {
+  renderSortLikes() {
+    if (this.props.isSignedIn && !this.state.hasBeenClicked) {
       return (
         <div className="item">
-          <button
-            onClick={this.sortMostLiked}
-            className="ui mini instagram button"
-          >
+          <button onClick={this.sortLikes} className="ui mini instagram button">
             Most Liked
           </button>
         </div>
       );
-    }
-  }
-
-  renderIconLinks(post) {
-    if (post.userId === this.props.currentUserId) {
+    } else {
       return (
-        <div className="middle aligned right floated content">
-          <Link to={`/posts/${post.id}/edit`}>
-            <i className="grey edit outline icon" />
-          </Link>
-          <Link to={`/posts/${post.id}/delete`}>
-            <i className="red x icon" />
-          </Link>
+        <div className="item">
+          <button onClick={this.sortLikes} className="ui mini instagram button">
+            Least Liked
+          </button>
         </div>
       );
     }
@@ -54,7 +56,7 @@ class PostList extends React.Component {
   handleLike = post => {
     this.props.likePost(post).then(() => {
       if (this.state.sorted) {
-        this.sortMostLiked();
+        this.sortLikes();
       }
     });
   };
@@ -85,6 +87,21 @@ class PostList extends React.Component {
     }
   }
 
+  renderIconLinks(post) {
+    if (post.userId === this.props.currentUserId) {
+      return (
+        <div className="middle aligned right floated content">
+          <Link to={`/posts/${post.id}/edit`}>
+            <i className="grey edit outline icon" />
+          </Link>
+          <Link to={`/posts/${post.id}/delete`}>
+            <i className="red x icon" />
+          </Link>
+        </div>
+      );
+    }
+  }
+
   renderPostCreate() {
     if (this.props.isSignedIn) {
       return (
@@ -101,7 +118,7 @@ class PostList extends React.Component {
     console.log(this.props.posts);
     return (
       <div>
-        {this.renderSortMostLiked()}
+        {this.renderSortLikes()}
         <br />
         <div className="ui relaxed celled list">{this.renderPostList()}</div>
         {this.renderPostCreate()}
