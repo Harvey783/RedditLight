@@ -1,7 +1,7 @@
-import React from "react";
-import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-import { fetchPosts, likePost } from "../../actions";
+import React from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { fetchPosts, likePost } from '../../actions';
 
 class PostList extends React.Component {
   constructor(props) {
@@ -33,6 +33,14 @@ class PostList extends React.Component {
     }
   };
 
+  handleLike = post => {
+    this.props.likePost(post).then(() => {
+      if (this.state.sorted) {
+        this.sortLikes();
+      }
+    });
+  };
+
   renderSortLikes() {
     if (this.props.isSignedIn && !this.state.hasBeenClicked) {
       return (
@@ -52,14 +60,6 @@ class PostList extends React.Component {
       );
     }
   }
-
-  handleLike = post => {
-    this.props.likePost(post).then(() => {
-      if (this.state.sorted) {
-        this.sortLikes();
-      }
-    });
-  };
 
   renderPostList() {
     if (this.props.isSignedIn) {
@@ -105,7 +105,7 @@ class PostList extends React.Component {
   renderPostCreate() {
     if (this.props.isSignedIn) {
       return (
-        <div style={{ textAlign: "right" }}>
+        <div style={{ textAlign: 'right' }}>
           <Link to="/posts/new" className="ui mini vk button">
             New Post
           </Link>
