@@ -13,6 +13,28 @@ class PostList extends React.Component {
     };
   }
 
+  filterPosts = () => {
+    this.setState(() => ({
+      posts: this.props.posts.filter(post => post.likeCount >= 10),
+      sorted: true
+    }));
+  };
+
+  renderFilterPosts() {
+    if (this.props.isSignedIn) {
+      return (
+        <div className="item">
+          <button
+            onClick={this.filterPosts}
+            className="ui mini instagram button"
+          >
+            Top Posts
+          </button>
+        </div>
+      );
+    }
+  }
+
   sortLikes = () => {
     if (!this.state.hasBeenClicked) {
       this.setState(() => ({
@@ -118,7 +140,11 @@ class PostList extends React.Component {
     console.log(this.props.posts);
     return (
       <div>
-        {this.renderSortLikes()}
+        <div className="mini ui buttons">
+          {this.renderSortLikes()}
+          <div className="or" />
+          {this.renderFilterPosts()}
+        </div>
         <br />
         <div className="ui relaxed celled list">{this.renderPostList()}</div>
         {this.renderPostCreate()}

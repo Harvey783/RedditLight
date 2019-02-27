@@ -1,15 +1,15 @@
-import React from "react";
-import { connect } from "react-redux";
-import { signIn, signOut } from "../actions";
-import { clientId } from "./ClientId";
+import React from 'react';
+import { connect } from 'react-redux';
+import { signIn, signOut } from '../actions';
+import { clientId } from './ClientId';
 
 class GoogleAuth extends React.Component {
   componentDidMount() {
-    window.gapi.load("client:auth2", () => {
+    window.gapi.load('client:auth2', () => {
       window.gapi.client
         .init({
           clientId: clientId,
-          scope: "email"
+          scope: 'email'
         })
         .then(() => {
           // .then automatically invokes arrow function
@@ -52,9 +52,9 @@ class GoogleAuth extends React.Component {
       return (
         <button
           onClick={this.onSignOutClick}
-          className="mini ui basic grey button"
+          className="inverted mini ui google plus button"
         >
-          <i className="red google icon" />
+          <i className="white google icon" />
           Sign Out
         </button>
       );
