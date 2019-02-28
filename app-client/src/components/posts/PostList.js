@@ -7,51 +7,19 @@ class PostList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      posts: [],
-      sorted: false,
-      hasBeenClicked: false
+      sortType: 'none'
     };
   }
 
-  filterPosts = () => {
-    this.setState(() => ({
-      posts: this.props.posts.filter(post => post.likeCount >= 10),
-      sorted: true
-    }));
-  };
-
-  renderFilterPosts() {
-    if (this.props.isSignedIn) {
-      return (
-        <div className="item">
-          <button
-            onClick={this.filterPosts}
-            className="ui mini instagram button"
-          >
-            Top Posts
-          </button>
-        </div>
-      );
-    }
-  }
-
   sortLikes = () => {
-    if (!this.state.hasBeenClicked) {
-      this.setState(() => ({
-        posts: this.props.posts
-          .concat()
-          .sort((a, b) => b.likeCount - a.likeCount),
-        sorted: true,
-        hasBeenClicked: true
-      }));
+    if (this.state.sortType === 'desc') {
+      return this.props.posts
+        .concat()
+        .sort((a, b) => b.likeCount - a.likeCount);
     } else {
-      this.setState(() => ({
-        posts: this.props.posts
-          .concat()
-          .sort((a, b) => a.likeCount - b.likeCount),
-        sorted: true,
-        hasBeenClicked: false
-      }));
+      return this.props.posts
+        .concat()
+        .sort((a, b) => a.likeCount - b.likeCount);
     }
   };
 
@@ -64,19 +32,25 @@ class PostList extends React.Component {
   };
 
   renderSortLikes() {
-    if (this.props.isSignedIn && !this.state.hasBeenClicked) {
+    if (this.props.isSignedIn && this.state.sortType === 'desc') {
       return (
         <div className="item">
-          <button onClick={this.sortLikes} className="ui mini instagram button">
-            Most Liked
+          <button
+            onClick={() => this.setState({ sortType: 'asc' })}
+            className="inverted mini ui google plus button"
+          >
+            Least Liked
           </button>
         </div>
       );
     } else {
       return (
         <div className="item">
-          <button onClick={this.sortLikes} className="ui mini instagram button">
-            Least Liked
+          <button
+            onClick={() => this.setState({ sortType: 'desc' })}
+            className="ui mini vk button"
+          >
+            Most Liked
           </button>
         </div>
       );
@@ -85,8 +59,15 @@ class PostList extends React.Component {
 
   renderPostList() {
     if (this.props.isSignedIn) {
-      const posts = this.state.sorted ? this.state.posts : this.props.posts;
-      return posts.map(post => {
+      let postsToRender;
+
+      if (this.state.sortType === 'none') {
+        postsToRender = this.props.posts;
+      } else {
+        postsToRender = this.sortLikes();
+      }
+
+      return postsToRender.map(post => {
         return (
           <div className="item" key={post.id}>
             {this.renderIconLinks(post)}
@@ -140,11 +121,7 @@ class PostList extends React.Component {
     console.log(this.props.posts);
     return (
       <div>
-        <div className="mini ui buttons">
-          {this.renderSortLikes()}
-          <div className="or" />
-          {this.renderFilterPosts()}
-        </div>
+        <div className="mini ui buttons">{this.renderSortLikes()}</div>
         <br />
         <div className="ui relaxed celled list">{this.renderPostList()}</div>
         {this.renderPostCreate()}
