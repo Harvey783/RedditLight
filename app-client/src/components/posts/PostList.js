@@ -7,7 +7,6 @@ class PostList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      posts: [],
       sorted: false
     };
   }
@@ -33,7 +32,7 @@ class PostList extends React.Component {
     if (this.props.isSignedIn) {
       return (
         <div className="item">
-          <button onClick={this.sortLikes} className="ui mini instagram button">
+          <button onClick={this.sortLikes} className="ui mini vk button">
             Most Liked
           </button>
         </div>
