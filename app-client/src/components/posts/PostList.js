@@ -7,23 +7,21 @@ class PostList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      sortType: 'none'
+      posts: [],
+      sorted: false
     };
   }
 
   sortLikes = () => {
-    if (this.state.sortType === 'desc') {
-      return this.props.posts
+    this.setState(() => ({
+      posts: this.props.posts
         .concat()
-        .sort((a, b) => b.likeCount - a.likeCount);
-    } else {
-      return this.props.posts
-        .concat()
-        .sort((a, b) => a.likeCount - b.likeCount);
-    }
+        .sort((a, b) => b.likeCount - a.likeCount),
+      sorted: true
+    }));
   };
 
-  handleSortLikes = post => {
+  handleLikes = post => {
     this.props.likePost(post).then(() => {
       if (this.state.sorted) {
         this.sortLikes();
@@ -32,24 +30,10 @@ class PostList extends React.Component {
   };
 
   renderSortLikes() {
-    if (this.props.isSignedIn && this.state.sortType === 'desc') {
+    if (this.props.isSignedIn) {
       return (
         <div className="item">
-          <button
-            onClick={() => this.setState({ sortType: 'asc' })}
-            className="inverted mini ui google plus button"
-          >
-            Least Liked
-          </button>
-        </div>
-      );
-    } else {
-      return (
-        <div className="item">
-          <button
-            onClick={() => this.setState({ sortType: 'desc' })}
-            className="ui mini vk button"
-          >
+          <button onClick={this.sortLikes} className="ui mini instagram button">
             Most Liked
           </button>
         </div>
@@ -59,15 +43,8 @@ class PostList extends React.Component {
 
   renderPostList() {
     if (this.props.isSignedIn) {
-      let postsToRender;
-
-      if (this.state.sortType === 'none') {
-        postsToRender = this.props.posts;
-      } else {
-        postsToRender = this.sortLikes();
-      }
-
-      return postsToRender.map(post => {
+      const posts = this.state.sorted ? this.state.posts : this.props.posts;
+      return posts.map(post => {
         return (
           <div className="item" key={post.id}>
             {this.renderIconLinks(post)}
@@ -76,7 +53,7 @@ class PostList extends React.Component {
               <div className="description">{post.description}</div>
               <br />
               <button
-                onClick={() => this.handleSortLikes(post)}
+                onClick={() => this.handleLikes(post)}
                 className="mini ui basic blue button"
               >
                 <i className="heart icon" />
@@ -87,6 +64,18 @@ class PostList extends React.Component {
           </div>
         );
       });
+    }
+  }
+
+  renderPostCreate() {
+    if (this.props.isSignedIn) {
+      return (
+        <div style={{ textAlign: 'right' }}>
+          <Link to="/posts/new" className="ui mini vk button">
+            New Post
+          </Link>
+        </div>
+      );
     }
   }
 
@@ -105,23 +94,11 @@ class PostList extends React.Component {
     }
   }
 
-  renderPostCreate() {
-    if (this.props.isSignedIn) {
-      return (
-        <div style={{ textAlign: 'right' }}>
-          <Link to="/posts/new" className="ui mini vk button">
-            New Post
-          </Link>
-        </div>
-      );
-    }
-  }
-
   render() {
     console.log(this.props.posts);
     return (
       <div>
-        <div className="mini ui buttons">{this.renderSortLikes()}</div>
+        {this.renderSortLikes()}
         <br />
         <div className="ui relaxed celled list">{this.renderPostList()}</div>
         {this.renderPostCreate()}
