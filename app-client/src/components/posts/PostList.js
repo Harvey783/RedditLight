@@ -21,7 +21,7 @@ class PostList extends React.Component {
     }));
   };
 
-  handleLikes = post => {
+  handleSortLikes = post => {
     this.props.likePost(post).then(() => {
       if (this.state.sorted) {
         this.sortLikes();
@@ -53,7 +53,7 @@ class PostList extends React.Component {
               <div className="description">{post.description}</div>
               <br />
               <button
-                onClick={() => this.handleLikes(post)}
+                onClick={() => this.handleSortLikes(post)}
                 className="mini ui basic blue button"
               >
                 <i className="heart icon" />
