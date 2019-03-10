@@ -6,6 +6,7 @@ import {
   CREATE_POST,
   DELETE_POST,
   LIKE_POST,
+  DISLIKE_POST,
   EDIT_POST
 } from "./types";
 import posts from "../components/api/posts";
@@ -53,6 +54,14 @@ export const likePost = post => async dispatch => {
   p.likeCount++;
   const response = await posts.patch(`/posts/${p.id}`, { post: p });
   dispatch({ type: LIKE_POST, payload: response.data });
+  history.push("/");
+};
+
+export const dislikePost = post => async dispatch => {
+  const p = { ...post };
+  p.likeCount--;
+  const response = await posts.patch(`/posts/${p.id}`, { post: p });
+  dispatch({ type: DISLIKE_POST, payload: response.data });
   history.push("/");
 };
 
