@@ -1,18 +1,18 @@
-import React from "react";
-import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-import { fetchPosts, likePost, dislikePost } from "../../actions";
+import React from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { fetchPosts, likePost, dislikePost } from '../../actions';
 
 class PostList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      sortType: "none"
+      sortType: 'none'
     };
   }
 
   sortLikes = () => {
-    if (this.state.sortType === "desc") {
+    if (this.state.sortType === 'desc') {
       return this.props.posts
         .concat()
         .sort((a, b) => b.likeCount - a.likeCount);
@@ -40,11 +40,11 @@ class PostList extends React.Component {
   };
 
   renderSortLikes() {
-    if (this.props.isSignedIn && this.state.sortType === "desc") {
+    if (this.props.isSignedIn && this.state.sortType === 'desc') {
       return (
         <div className="item">
           <button
-            onClick={() => this.setState({ sortType: "asc" })}
+            onClick={() => this.setState({ sortType: 'asc' })}
             className="ui mini vk button"
           >
             Least Liked
@@ -55,7 +55,7 @@ class PostList extends React.Component {
       return (
         <div className="item">
           <button
-            onClick={() => this.setState({ sortType: "desc" })}
+            onClick={() => this.setState({ sortType: 'desc' })}
             className="ui mini vk button"
           >
             Most Liked
@@ -69,7 +69,7 @@ class PostList extends React.Component {
     if (this.props.isSignedIn) {
       let postsToRender;
 
-      if (this.state.sortType === "none") {
+      if (this.state.sortType === 'none') {
         postsToRender = this.props.posts;
       } else {
         postsToRender = this.sortLikes();
@@ -84,31 +84,24 @@ class PostList extends React.Component {
               <div className="description">{post.description}</div>
               <br />
 
-              <div className="mini ui buttons">
-                <div
-                  className="ui labeled button"
-                  onClick={() => this.handleSortLikes(post)}
-                >
-                  <div className="mini ui twitter button">
-                    <i className="heart icon" />
-                    Likes
-                  </div>
-                  <a className="ui mini vk button left pointing label">
-                    {post.likeCount}
-                  </a>
-                </div>
+              <div className="small ui buttons">
+                <button className="ui small vk button">
+                  <i className="white heart icon" />
+                  {post.likeCount}
+                </button>
+
                 <button
                   onClick={() => this.handleSortLikes(post)}
-                  className="mini ui basic blue icon button"
+                  className="ui grey icon button"
                 >
-                  <i className="thumbs up icon" />
+                  <i className="white thumbs up icon" />
                 </button>
 
                 <button
                   onClick={() => this.handleSortDislikes(post)}
-                  className="mini ui basic red icon button"
+                  className="ui grey icon button"
                 >
-                  <i className="thumbs down icon" />
+                  <i className="white thumbs down icon" />
                 </button>
               </div>
             </div>
@@ -137,7 +130,7 @@ class PostList extends React.Component {
   renderPostCreate() {
     if (this.props.isSignedIn) {
       return (
-        <div style={{ textAlign: "right" }}>
+        <div style={{ textAlign: 'right' }}>
           <Link to="/posts/new" className="ui mini vk button">
             New Post
           </Link>
