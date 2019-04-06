@@ -6,6 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+Post.destroy_all
+
 Post.create!([{
   title: "Whistleblower: White House overruled 25 security clearance denials",
   description: "The individuals 'had a wide range of serious disqualifying issues' including drug use and criminal conduct.",

@@ -1,13 +1,11 @@
-import React from "react";
-import GoogleAuth from "./GoogleAuth";
-import { Link } from "react-router-dom";
+import React from 'react';
+import GoogleAuth from './GoogleAuth';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   return (
     <div className="ui secondary pointing menu">
-      <Link to="/" className="item">
-        React Redux Assessment App
-      </Link>
+      <Link to="/" className="item" />
       <div className="right menu">
         <GoogleAuth />
       </div>

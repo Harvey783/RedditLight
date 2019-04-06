@@ -85,21 +85,21 @@ class PostList extends React.Component {
               <br />
 
               <div className="small ui buttons">
-                <button className="ui small vk button">
-                  <i className="white heart icon" />
+                <button className="ui basic vk button">
+                  <i className="red heart icon" />
                   {post.likeCount}
                 </button>
 
                 <button
                   onClick={() => this.handleSortLikes(post)}
-                  className="ui grey icon button"
+                  className="ui basic icon button"
                 >
                   <i className="white thumbs up icon" />
                 </button>
 
                 <button
                   onClick={() => this.handleSortDislikes(post)}
-                  className="ui grey icon button"
+                  className="ui basic icon button"
                 >
                   <i className="white thumbs down icon" />
                 </button>

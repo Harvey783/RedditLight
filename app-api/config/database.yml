@@ -7,14 +7,14 @@ default: &default
 
 development:
   <<: *default
-  database: app-api_development
+  database: api_db_development
   adapter: postgresql
   username: username
   password: <%= ENV['DB_PASSWORD'] %>
 
 test:
   <<: *default
-  database: app-api_test
+  database: api_db_test
   adapter: postgresql
   username: username
   password: <%= ENV['DB_PASSWORD'] %>
@@ -22,6 +22,6 @@ test:
 production:
   <<: *default
   adapter: postgresql
-  database: app-api_production
+  database: api_db_production
   username: username
   password: <%= ENV['DB_PASSWORD'] %>
