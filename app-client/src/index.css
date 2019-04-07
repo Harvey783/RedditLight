@@ -1,0 +1,38 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+body {
+  margin: 20px;
+}
+
+.action {
+  margin-left: 10px;
+  color: #777;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.likes {
+  color: firebrick;
+}
+
+.description {
+  color: #777;
+  margin-bottom: 5px;
+}
+
+.content {
+  border-bottom: 1px solid #eee;
+  padding-bottom: 20px;
+  flex: 1;
+}
+
+.title {
+  font-weight: normal;
+  color: firebrick;
+  text-decoration: none;
+  margin-bottom: 5px;
+}

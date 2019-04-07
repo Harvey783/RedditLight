@@ -77,55 +77,56 @@ class PostList extends React.Component {
 
       return postsToRender.map(post => {
         return (
-          <div className="item" key={post.id}>
-            {this.renderIconLinks(post)}
-            <div className="content">
-              <div className="header">{post.title}</div>
-              <div className="description">{post.description}</div>
-              <br />
+          <div className="content" key={post.id}>
+            <h4 className="title">{post.title}</h4>
+            <div className="description">{post.description}</div>
 
-              <div className="small ui buttons">
-                <button className="ui basic vk button">
-                  <i className="red heart icon" />
-                  {post.likeCount}
-                </button>
+            <a className="likes" href="">
+              {post.likeCount} likes
+            </a>
 
-                <button
-                  onClick={() => this.handleSortLikes(post)}
-                  className="ui basic icon button"
-                >
-                  <i className="white thumbs up icon" />
-                </button>
-
-                <button
-                  onClick={() => this.handleSortDislikes(post)}
-                  className="ui basic icon button"
-                >
-                  <i className="white thumbs down icon" />
-                </button>
-              </div>
-            </div>
-            <br />
+            <span className="action">
+              <i
+                onClick={() => this.handleSortLikes(post)}
+                className="white thumbs up icon"
+              />
+            </span>
+            <span className="action">
+              <i
+                onClick={() => this.handleSortDislikes(post)}
+                className="white thumbs down icon"
+              />
+            </span>
+            <span className="action">
+              <Link to={`/posts/${post.id}/edit`}>
+                <i className="grey edit outline icon" />
+              </Link>
+            </span>
+            <span className="action">
+              <Link to={`/posts/${post.id}/delete`}>
+                <i className="grey x icon" />
+              </Link>
+            </span>
           </div>
         );
       });
     }
   }
 
-  renderIconLinks(post) {
-    if (post.userId === this.props.currentUserId) {
-      return (
-        <div className="middle aligned right floated content">
-          <Link to={`/posts/${post.id}/edit`}>
-            <i className="grey edit outline icon" />
-          </Link>
-          <Link to={`/posts/${post.id}/delete`}>
-            <i className="red x icon" />
-          </Link>
-        </div>
-      );
-    }
-  }
+  // renderIconLinks(post) {
+  //   if (post.userId === this.props.currentUserId) {
+  //     return (
+  //       <div className="middle aligned right floated content">
+  //         <Link to={`/posts/${post.id}/edit`}>
+  //           <i className="grey edit outline icon" />
+  //         </Link>
+  //         <Link to={`/posts/${post.id}/delete`}>
+  //           <i className="grey x icon" />
+  //         </Link>
+  //       </div>
+  //     );
+  //   }
+  // }
 
   renderPostCreate() {
     if (this.props.isSignedIn) {
@@ -140,12 +141,11 @@ class PostList extends React.Component {
   }
 
   render() {
-    console.log(this.props.posts);
     return (
       <div>
-        <div className="mini ui buttons">{this.renderSortLikes()}</div>
+        <div>{this.renderSortLikes()}</div>
         <br />
-        <div className="ui relaxed celled list">{this.renderPostList()}</div>
+        <div>{this.renderPostList()}</div>
         {this.renderPostCreate()}
       </div>
     );
