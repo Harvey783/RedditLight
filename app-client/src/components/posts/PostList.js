@@ -45,7 +45,7 @@ class PostList extends React.Component {
         <div className="item">
           <button
             onClick={() => this.setState({ sortType: 'asc' })}
-            className="ui mini vk button"
+            className="ui mini grey basic button"
           >
             Least Liked
           </button>
@@ -56,7 +56,7 @@ class PostList extends React.Component {
         <div className="item">
           <button
             onClick={() => this.setState({ sortType: 'desc' })}
-            className="ui mini vk button"
+            className="ui mini grey basic button"
           >
             Most Liked
           </button>
@@ -81,20 +81,20 @@ class PostList extends React.Component {
             <h4 className="title">{post.title}</h4>
             <div className="description">{post.description}</div>
 
-            <a className="likes" href="">
+            <a className="likes" href="/">
               {post.likeCount} likes
             </a>
 
             <span className="action">
               <i
                 onClick={() => this.handleSortLikes(post)}
-                className="white thumbs up icon"
+                className="white thumbs up outline icon"
               />
             </span>
             <span className="action">
               <i
                 onClick={() => this.handleSortDislikes(post)}
-                className="white thumbs down icon"
+                className="white thumbs down outline icon"
               />
             </span>
             <span className="action">
@@ -104,39 +104,17 @@ class PostList extends React.Component {
             </span>
             <span className="action">
               <Link to={`/posts/${post.id}/delete`}>
-                <i className="grey x icon" />
+                <i className="grey trash alternate outline icon" />
+              </Link>
+            </span>
+            <span className="action">
+              <Link to="/posts/new">
+                <i className="grey comment outline icon" />
               </Link>
             </span>
           </div>
         );
       });
-    }
-  }
-
-  // renderIconLinks(post) {
-  //   if (post.userId === this.props.currentUserId) {
-  //     return (
-  //       <div className="middle aligned right floated content">
-  //         <Link to={`/posts/${post.id}/edit`}>
-  //           <i className="grey edit outline icon" />
-  //         </Link>
-  //         <Link to={`/posts/${post.id}/delete`}>
-  //           <i className="grey x icon" />
-  //         </Link>
-  //       </div>
-  //     );
-  //   }
-  // }
-
-  renderPostCreate() {
-    if (this.props.isSignedIn) {
-      return (
-        <div style={{ textAlign: 'right' }}>
-          <Link to="/posts/new" className="ui mini vk button">
-            New Post
-          </Link>
-        </div>
-      );
     }
   }
 
@@ -146,7 +124,6 @@ class PostList extends React.Component {
         <div>{this.renderSortLikes()}</div>
         <br />
         <div>{this.renderPostList()}</div>
-        {this.renderPostCreate()}
       </div>
     );
   }

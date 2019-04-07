@@ -15,8 +15,10 @@ body {
   cursor: pointer;
 }
 
-.likes {
+.likes,
+.likes:hover {
   color: firebrick;
+  cursor: default;
 }
 
 .description {
@@ -32,6 +34,14 @@ body {
 
 .title {
   font-weight: normal;
+  color: firebrick;
+  text-decoration: none;
+  margin-bottom: 5px;
+  font-size: 18px;
+}
+
+.container.header-title {
+  font-weight: bold;
   color: firebrick;
   text-decoration: none;
   margin-bottom: 5px;

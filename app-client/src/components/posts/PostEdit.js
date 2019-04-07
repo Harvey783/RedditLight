@@ -1,8 +1,8 @@
-import _ from "lodash";
-import React from "react";
-import PostForm from "../PostForm";
-import { connect } from "react-redux";
-import { fetchPost, editPost } from "../../actions";
+import _ from 'lodash';
+import React from 'react';
+import PostForm from '../PostForm';
+import { connect } from 'react-redux';
+import { fetchPost, editPost } from '../../actions';
 
 class PostEdit extends React.Component {
   componentDidMount() {
@@ -11,14 +11,13 @@ class PostEdit extends React.Component {
 
   onSubmit = formValues => {
     this.props.editPost(this.props.match.params.id, formValues);
-    // PostForm callback
   };
 
   render() {
     return (
       <div>
         <PostForm
-          initialValues={_.pick(this.props.post, "title", "description")}
+          initialValues={_.pick(this.props.post, 'title', 'description')}
           onSubmit={this.onSubmit}
         />
       </div>
