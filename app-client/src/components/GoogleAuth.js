@@ -12,18 +12,9 @@ class GoogleAuth extends React.Component {
           scope: 'email'
         })
         .then(() => {
-          // .then automatically invokes arrow function
-          // after library successfully initialized
           this.auth = window.gapi.auth2.getAuthInstance();
-          // get a reference to the auth object and
-          // save it on the component class
           this.onAuthChange(this.auth.isSignedIn.get());
-          // passes in the users current authentication status
           this.auth.isSignedIn.listen(this.onAuthChange);
-          // When library is finished initializing assigns
-          // the AuthInstance to this.auth... Immediately updates
-          // the auth state inside the redux store and then waits
-          // for a change to the authentitcation status.
         });
     });
   }
@@ -31,8 +22,6 @@ class GoogleAuth extends React.Component {
   onAuthChange = isSignedIn => {
     if (isSignedIn) {
       this.props.signIn(this.auth.currentUser.get().getId());
-      // Calls the signIn action creator and passes the ID of the
-      // signed-in user anytime the authentication status changes
     } else {
       this.props.signOut();
     }
@@ -40,7 +29,6 @@ class GoogleAuth extends React.Component {
 
   onSignInClick = () => {
     this.auth.signIn();
-    // Callback accessing the AuthInstance assigned to this.auth.
   };
 
   onSignOutClick = () => {

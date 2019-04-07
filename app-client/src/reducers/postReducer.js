@@ -6,18 +6,13 @@ import {
   LIKE_POST,
   DISLIKE_POST,
   DELETE_POST
-} from "../actions/types";
-import _ from "lodash";
+} from '../actions/types';
+import _ from 'lodash';
 
 export default (state = {}, action) => {
   switch (action.type) {
     case FETCH_POSTS:
-      return { ...state, ..._.mapKeys(action.payload, "id") };
-    // mapKeys is a function in Lodash that takes an array and
-    // returns an object. The keys of this new object are going
-    // to be taken from each individual record inside of the array.
-    // Whatever the value of ‘id’ is for any given object inside
-    // the array is now the key for that object in the new state object.
+      return { ...state, ..._.mapKeys(action.payload, 'id') };
     case FETCH_POST:
       return { ...state, [action.payload.id]: action.payload };
     case CREATE_POST:

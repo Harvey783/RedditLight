@@ -1,9 +1,9 @@
-import React from "react";
-import Modal from "../Modal";
-import history from "../History";
-import { connect } from "react-redux";
-import { fetchPost, deletePost } from "../../actions";
-import { Link } from "react-router-dom";
+import React from 'react';
+import Modal from '../Modal';
+import history from '../History';
+import { connect } from 'react-redux';
+import { fetchPost, deletePost } from '../../actions';
+import { Link } from 'react-router-dom';
 
 class PostDelete extends React.Component {
   componentDidMount() {
@@ -14,10 +14,6 @@ class PostDelete extends React.Component {
     const { id } = this.props.match.params;
 
     return (
-      // Fragments let you group a list of
-      // children without adding extra
-      // nodes to the DOM. Needed so Delete
-      // and Cancel links remain inline.
       <React.Fragment>
         <button
           onClick={() => this.props.deletePost(id)}
@@ -43,9 +39,7 @@ class PostDelete extends React.Component {
       <Modal
         content={this.renderContent()}
         actions={this.renderActions()}
-        onDismiss={() => history.push("/")}
-        // onDismiss for when a user clicks
-        // outside the Modal
+        onDismiss={() => history.push('/')}
       />
     );
   }
