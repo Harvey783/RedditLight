@@ -8,9 +8,9 @@ import {
   LIKE_POST,
   DISLIKE_POST,
   EDIT_POST
-} from "./types";
-import posts from "../components/api/posts";
-import history from "../components/History";
+} from './types';
+import posts from '../components/api/posts';
+import history from '../components/History';
 
 export const signIn = userId => {
   return {
@@ -26,7 +26,7 @@ export const signOut = () => {
 };
 
 export const fetchPosts = () => async dispatch => {
-  const response = await posts.get("/posts");
+  const response = await posts.get('/posts');
   dispatch({ type: FETCH_POSTS, payload: response.data });
   return response.data;
 };
@@ -36,25 +36,12 @@ export const fetchPost = id => async dispatch => {
   dispatch({ type: FETCH_POST, payload: response.data });
 };
 
-export const createPost = formValues => async (dispatch, getState) => {
-  const { userId } = getState().auth;
-  const response = await posts.post("/posts", { ...formValues, userId });
-  dispatch({ type: CREATE_POST, payload: response.data });
-  history.push("/");
-};
-
-export const editPost = (id, formValues) => async dispatch => {
-  const response = await posts.patch(`/posts/${id}`, formValues);
-  dispatch({ type: EDIT_POST, payload: response.data });
-  history.push("/");
-};
-
 export const likePost = post => async dispatch => {
   const p = { ...post };
   p.likeCount++;
   const response = await posts.patch(`/posts/${p.id}`, { post: p });
   dispatch({ type: LIKE_POST, payload: response.data });
-  history.push("/");
+  history.push('/');
 };
 
 export const dislikePost = post => async dispatch => {
@@ -62,11 +49,24 @@ export const dislikePost = post => async dispatch => {
   p.likeCount--;
   const response = await posts.patch(`/posts/${p.id}`, { post: p });
   dispatch({ type: DISLIKE_POST, payload: response.data });
-  history.push("/");
+  history.push('/');
+};
+
+export const createPost = formValues => async (dispatch, getState) => {
+  const { userId } = getState().auth;
+  const response = await posts.post('/posts', { ...formValues, userId });
+  dispatch({ type: CREATE_POST, payload: response.data });
+  history.push('/');
+};
+
+export const editPost = (id, formValues) => async dispatch => {
+  const response = await posts.patch(`/posts/${id}`, formValues);
+  dispatch({ type: EDIT_POST, payload: response.data });
+  history.push('/');
 };
 
 export const deletePost = id => async dispatch => {
   await posts.delete(`/posts/${id}`);
   dispatch({ type: DELETE_POST, payload: id });
-  history.push("/");
+  history.push('/');
 };

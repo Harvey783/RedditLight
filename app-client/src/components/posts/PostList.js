@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import Header from '../Header';
 import { likePost, dislikePost } from '../../actions';
 
 class PostList extends React.Component {
