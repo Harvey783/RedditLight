@@ -4,14 +4,15 @@ import { Link } from 'react-router-dom';
 
 const Header = () => {
   return (
-    <div class="ui inverted segment">
-      <div class="ui inverted secondary menu">
-        <Link to="/">
-          <a class="ui red active item">REDDITER</a>
+    <div className="ui inverted segment">
+      <div className="ui inverted secondary menu">
+        <Link to="/" className="ui red active item">
+          REDDITER
         </Link>
-        <a class="item" />
-        <div class="right menu">
-          <GoogleAuth class="item" />
+        <div className="item" />
+
+        <div className="right menu">
+          <GoogleAuth className="item" />
         </div>
       </div>
     </div>
