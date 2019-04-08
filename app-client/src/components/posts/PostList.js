@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { fetchPosts, likePost, dislikePost } from '../../actions';
+import { likePost, dislikePost } from '../../actions';
 
 class PostList extends React.Component {
   constructor(props) {
@@ -139,5 +139,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { fetchPosts, likePost, dislikePost }
+  { likePost, dislikePost }
 )(PostList);
