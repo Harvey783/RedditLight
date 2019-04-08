@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import Header from '../Header';
 import { likePost, dislikePost } from '../../actions';
 
 class PostList extends React.Component {
@@ -40,28 +41,30 @@ class PostList extends React.Component {
   };
 
   renderSortLikes() {
-    if (this.props.isSignedIn && this.state.sortType === 'desc') {
-      return (
-        <div className="item">
-          <button
-            onClick={() => this.setState({ sortType: 'asc' })}
-            className="ui mini grey basic button"
-          >
-            Least Liked
-          </button>
-        </div>
-      );
-    } else {
-      return (
-        <div className="item">
-          <button
-            onClick={() => this.setState({ sortType: 'desc' })}
-            className="ui mini grey basic button"
-          >
-            Most Liked
-          </button>
-        </div>
-      );
+    if (this.props.isSignedIn) {
+      if (this.state.sortType === 'desc') {
+        return (
+          <div className="item">
+            <button
+              onClick={() => this.setState({ sortType: 'asc' })}
+              className="ui mini grey basic button"
+            >
+              Least Liked
+            </button>
+          </div>
+        );
+      } else {
+        return (
+          <div className="item">
+            <button
+              onClick={() => this.setState({ sortType: 'desc' })}
+              className="ui mini grey basic button"
+            >
+              Most Liked
+            </button>
+          </div>
+        );
+      }
     }
   }
 
